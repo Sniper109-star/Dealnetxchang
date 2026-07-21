@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader";
+import MobileNav from "@/components/MobileNav";
 import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
@@ -17,6 +17,8 @@ const geistMono = Geist_Mono({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: "#0a0a0a",
 };
 
@@ -35,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-neutral-950 text-neutral-100 flex flex-col min-h-screen`}
       >
-        <SiteHeader />
+        <MobileNav />
         <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>

@@ -7,20 +7,27 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 * {
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
-a {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+input, textarea, select {
+  font-size: 16px;
+}
+
+button, a {
+  touch-action: manipulation;
 }

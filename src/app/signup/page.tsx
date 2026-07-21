@@ -53,7 +53,7 @@ export default function SignupPage() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-white/30"
+            className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-4 text-white outline-none focus:border-white/30"
             required
           />
         </div>
@@ -66,7 +66,7 @@ export default function SignupPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-white/30"
+            className="w-full rounded-xl border border-white/10 bg-neutral-900 px-4 py-4 text-white outline-none focus:border-white/30"
             required
           />
         </div>
@@ -74,7 +74,7 @@ export default function SignupPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-full bg-white py-3 text-base font-semibold text-neutral-900 transition-colors hover:bg-neutral-200 disabled:opacity-60"
+          className="h-14 w-full rounded-2xl bg-white text-base font-semibold text-neutral-900 transition-colors hover:bg-neutral-200 active:scale-[0.98] disabled:opacity-60"
         >
           {loading ? "Creating account..." : "Get started"}
         </button>
