@@ -1,25 +1,22 @@
 "use server";
 
-import { addUser } from "@/lib/db";
+import { getUsers } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { email, name, password } = await request.json();
+    const { email, password } = await request.json();
 
-    if (!email || !name || !password) {
-      return NextResponse.json({ error: "Email, name, and password are required" }, { status: 400 });
+    if (!email || !password) {
+      return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
     }
 
-    const user = {
-      id: crypto.randomUUID(),
-      email,
-      name,
-      password,
-      role: "user" as const,
-    };
+    const users = await getUsers();
+    const user = users.find((u) => u.email === email && u.password === password);
 
-    await addUser(user);
+    if (!user) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    }
 
     const response = NextResponse.json({ ok: true, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
     response.cookies.set("user_id", user.id, {
@@ -37,7 +34,7 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    console.error("Signup error", error);
-    return NextResponse.json({ error: "Failed to create account" }, { status: 500 });
+    console.error("Login error", error);
+    return NextResponse.json({ error: "Failed to sign in" }, { status: 500 });
   }
 }

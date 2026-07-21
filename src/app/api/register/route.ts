@@ -1,6 +1,6 @@
 "use server";
 
-import { addUser } from "@/lib/db";
+import { addUser, getUsers } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -9,6 +9,12 @@ export async function POST(request: Request) {
 
     if (!email || !name || !password) {
       return NextResponse.json({ error: "Email, name, and password are required" }, { status: 400 });
+    }
+
+    const users = await getUsers();
+    const existing = users.find((u) => u.email === email);
+    if (existing) {
+      return NextResponse.json({ error: "Email already exists" }, { status: 409 });
     }
 
     const user = {
@@ -37,7 +43,7 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    console.error("Signup error", error);
+    console.error("Register error", error);
     return NextResponse.json({ error: "Failed to create account" }, { status: 500 });
   }
 }
