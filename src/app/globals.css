@@ -7,14 +7,11 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
-  overscroll-behavior-y: none;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,16 +20,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-button,
-a,
-[role="button"] {
-  touch-action: manipulation;
-}
-
-.safe-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-.safe-top {
-  padding-top: env(safe-area-inset-top, 0px);
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }

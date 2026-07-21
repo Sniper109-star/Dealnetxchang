@@ -1,40 +1,72 @@
-import MobileBottomNav from "@/components/MobileBottomNav";
-
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-lg flex-col bg-neutral-900 pb-[calc(4.5rem+env(safe-area-inset-bottom))]">
-      <header className="safe-top sticky top-0 z-40 border-b border-white/10 bg-neutral-900/90 backdrop-blur-md">
-        <div className="flex items-center justify-between px-4 py-3">
-          <h1 className="text-lg font-semibold text-white">Dealnetxchang</h1>
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 transition-colors active:bg-neutral-700 active:text-white"
-            aria-label="Notifications"
-          >
-            <svg
-              aria-hidden="true"
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-            </svg>
-          </button>
-        </div>
-      </header>
-
-      <section className="flex-1 px-4 pt-6">
-        <div className="rounded-2xl border border-dashed border-white/10 bg-neutral-800/40 p-8 text-center">
-          <p className="text-sm text-neutral-400">Mobile UI shell ready.</p>
-          <p className="mt-2 text-xs text-neutral-500">Plug in your content and flows.</p>
+    <div>
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+              Exchange deals at scale
+            </h1>
+            <p className="mt-6 text-lg text-neutral-300 sm:text-xl">
+              Dealnetxchang helps teams discover, negotiate, and close deals faster with a transparent, modern platform.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <a
+                href="#getstarted"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
+              >
+                Start for free
+              </a>
+              <a
+                href="#demo"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-8 text-base font-medium text-white transition-colors hover:bg-white/10"
+              >
+                View demo
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <MobileBottomNav />
-    </main>
+      <section id="features" className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">Everything you need to move deals forward</h2>
+            <p className="mt-4 text-neutral-300">
+              From discovery to close, the platform gives you sharper visibility and faster workflows.
+            </p>
+          </div>
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Smart discovery", desc: "Find relevant deals with filters, signals, and saved searches." },
+              { title: "Collaboration", desc: "Share boards, notes, and updates with your team in one place." },
+              { title: "Analytics", desc: "Track conversion, velocity, and pipeline health in real time." },
+            ].map((feature) => (
+              <div key={feature.title} className="rounded-2xl border border-white/10 bg-neutral-900/40 p-6">
+                <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                <p className="mt-2 text-sm text-neutral-300">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-neutral-900/40 p-8 text-center sm:p-12">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to get started?</h2>
+            <p className="mt-4 text-neutral-300">Create an account and see the platform in action today.</p>
+            <div className="mt-8">
+              <a
+                href="#signup"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
+              >
+                Create free account
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
