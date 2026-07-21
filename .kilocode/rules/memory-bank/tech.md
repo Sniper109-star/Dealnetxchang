@@ -10,6 +10,15 @@
 | Tailwind CSS | 4.x     | Utility-first CSS               |
 | Bun          | Latest  | Package manager & runtime       |
 
+## Persistence
+
+### Data Layer
+
+- Primary: File-based JSON persistence (`src/lib/db.ts`)
+- Storage: `/data` directory (gitignored)
+- Records: users, deposits, events
+- Future: Replace with Drizzle ORM + SQLite/Postgres per `.kilocode/recipes/add-database.md`
+
 ## Development Environment
 
 ### Prerequisites
@@ -51,15 +60,24 @@ bun typecheck      # Run TypeScript type checking
 - Uses `eslint-config-next`
 - Flat config format
 
+### Environment Variables (`.env.example`)
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_APP_NAME` | Application name |
+| `NEXT_PUBLIC_APP_URL` | Public app URL |
+| `NEXT_PUBLIC_API_URL` | Backend API URL |
+| `API_SECRET` | Server-side API secret |
+
 ## Key Dependencies
 
 ### Production Dependencies
 
 ```json
 {
-  "next": "^16.1.3", // Framework
-  "react": "^19.2.3", // UI library
-  "react-dom": "^19.2.3" // React DOM
+  "next": "^16.1.3",
+  "react": "^19.2.3",
+  "react-dom": "^19.2.3"
 }
 ```
 
@@ -92,11 +110,17 @@ bun typecheck      # Run TypeScript type checking
 ├── public/                 # Static assets
 │   └── .gitkeep
 └── src/                    # Source code
-    └── app/                # Next.js App Router
-        ├── layout.tsx      # Root layout
-        ├── page.tsx        # Home page
-        ├── globals.css     # Global styles
-        └── favicon.ico     # Site icon
+    ├── app/                # Next.js App Router
+    │   ├── layout.tsx      # Root layout
+    │   ├── page.tsx        # Home page
+    │   ├── globals.css     # Global styles
+    │   ├── signup/         # Sign-up page
+    │   ├── dashboard/      # User dashboard
+    │   ├── admin/          # Admin panel
+    │   └── api/            # API routes
+    ├── components/         # Shared UI components
+    └── lib/                # Utilities and data layer
+        └── db.ts           # File-based persistence
 ```
 
 ## Technical Constraints
@@ -104,30 +128,31 @@ bun typecheck      # Run TypeScript type checking
 ### Starting Point
 
 - Minimal structure - expand as needed
-- No database by default (use recipe to add)
-- No authentication by default (add when needed)
+- File-based persistence for real experiment data (no mock data)
+- No mock data — all data comes from user actions
 
 ### Browser Support
 
 - Modern browsers (ES2020+)
 - No IE11 support
 
-## Performance Considerations
+## Event Tracking Architecture
 
-### Image Optimization
+### Tracked Events
 
-- Use Next.js `Image` component for optimization
-- Place images in `public/` directory
+- **Sign-ups**: User account creation
+- **Deposits**: Financial transactions by users
+- **Button clicks**: CTA and UI interaction tracking
+- **Conversions**: Goal completions (deposits, sign-ups)
 
-### Bundle Size
+### API Routes
 
-- Tree-shaking enabled by default
-- Tailwind CSS purges unused styles
-
-### Core Web Vitals
-
-- Server Components reduce client JavaScript
-- Streaming and Suspense for better UX
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/track` | POST | Record generic events |
+| `/api/signup` | POST | Create user account |
+| `/api/deposit` | POST | Process deposit |
+| `/api/stats` | GET | Fetch platform metrics |
 
 ## Deployment
 
@@ -138,6 +163,6 @@ bun typecheck      # Run TypeScript type checking
 
 ### Environment Variables
 
-- None required for base template
-- Add as needed for features
+- `.env.example` provided for portability
 - Use `.env.local` for local development
+- Set all variables in hosting platform CI/CD

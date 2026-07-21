@@ -32,13 +32,25 @@ export default function SiteHeader() {
         </div>
         <div className="flex items-center gap-3">
           <Link
-            href="#signin"
+            href="/dashboard"
+            className="hidden sm:inline-flex text-sm text-neutral-300 transition-colors hover:text-white"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/admin"
+            className="hidden sm:inline-flex text-sm text-neutral-300 transition-colors hover:text-white"
+          >
+            Admin
+          </Link>
+          <Link
+            href="/signin"
             className="hidden sm:inline-flex text-sm text-neutral-300 transition-colors hover:text-white"
           >
             Sign in
           </Link>
           <Link
-            href="#getstarted"
+            href="/signup"
             className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
           >
             Get started

@@ -1,3 +1,5 @@
+import TrackButton from "@/components/TrackButton";
+
 export default function Home() {
   return (
     <div>
@@ -11,18 +13,22 @@ export default function Home() {
               Dealnetxchang helps teams discover, negotiate, and close deals faster with a transparent, modern platform.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="#getstarted"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
-              >
-                Start for free
-              </a>
-              <a
-                href="#demo"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-8 text-base font-medium text-white transition-colors hover:bg-white/10"
-              >
-                View demo
-              </a>
+              <TrackButton name="cta_start_free">
+                <a
+                  href="/signup"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
+                >
+                  Start for free
+                </a>
+              </TrackButton>
+              <TrackButton name="cta_view_demo">
+                <a
+                  href="/admin"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-8 text-base font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  View demo
+                </a>
+              </TrackButton>
             </div>
           </div>
         </div>
@@ -57,12 +63,14 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to get started?</h2>
             <p className="mt-4 text-neutral-300">Create an account and see the platform in action today.</p>
             <div className="mt-8">
-              <a
-                href="#signup"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
-              >
-                Create free account
-              </a>
+              <TrackButton name="cta_signup_bottom">
+                <a
+                  href="/signup"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-200"
+                >
+                  Create free account
+                </a>
+              </TrackButton>
             </div>
           </div>
         </div>
